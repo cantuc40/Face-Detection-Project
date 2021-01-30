@@ -17,13 +17,13 @@ face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_alt.xml')
 
 
 #List all the files in the directory. All of the jpg files should be in this directory only. Otherwise, the input
-#will not work. Make sure the correct directory is listed 
+#will not work. Make sure the correct working directory is listed 
 dirListing = os.listdir('/home/chris/git/Face detector/Images/')
 
 #Files array is used to store the input of the images
 Files = []
 
-#store all files with jpg extensions into array Files
+#store all files with jpg extensions into array Files. Make sure the correct working directory is listed
 for item in dirListing:
     if ".jpg" in item:
         Files.append('/home/chris/git/Face detector/Images/'+item)
