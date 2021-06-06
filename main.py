@@ -1,15 +1,23 @@
+#This program requires the opencv library in order to function. 
 import cv2
+import time
 import os
 import numpy as np
 #import skvideo.io #to use skvideo library, imput "pip install sk_video" into a terminal or command line
 import glob
 
 
-
 #Determine the title, fps and size of the final video
 video_title = 'finalvideo.avi'
 frames_per_second = 30
 size = (800,600)
+
+#Intialize Video exporter
+out = cv2.VideoWriter(video_title, cv2.VideoWriter_fourcc(*'DIVX'), frames_per_second, size)
+
+
+current_directory = os.getcwd()
+
 
 
 # Load the cascade
@@ -18,7 +26,7 @@ face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_alt.xml')
 
 #List all the files in the directory. All of the jpg files should be in this directory only. Otherwise, the input
 #will not work. Make sure the correct working directory is listed 
-dirListing = os.listdir('/home/chris/git/Face detector/Images/')
+dirListing = os.listdir(current_directory+'/Demo/')
 
 #Files array is used to store the input of the images
 Files = []
@@ -26,7 +34,7 @@ Files = []
 #store all files with jpg extensions into array Files. Make sure the correct working directory is listed
 for item in dirListing:
     if ".jpg" in item:
-        Files.append('/home/chris/git/Face detector/Images/'+item)
+        Files.append(current_directory+'/Demo/'+item)
 
 
 #Sort Files array
@@ -34,8 +42,8 @@ Files.sort()
 
 
 
-#Intialize Video exporter
-out = cv2.VideoWriter(video_title, cv2.VideoWriter_fourcc(*'DIVX'), frames_per_second, size)
+
+
 
 
 #Checks Each image name in the array Files
